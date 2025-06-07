@@ -78,22 +78,10 @@ void ALaberintoBuilder::ConstruirBloques()
 		for (int32 j = 0; j < Laberinto->aMapaBloques[i].Num(); j++)
 		{
 			int32 Tipo = Laberinto->aMapaBloques[i][j];
-	
-			// Evita colocar 0 (vacío), 4 (acero), 7 (obstáculo) y 8 (puerta)
 			if (Tipo != 0 && Tipo != 4 && Tipo != 7 && Tipo != 8)
 			{
-				// Buscar el tipo en el mapa de bloques de forma segura
-				UClass* ClaseBloque = MapaBloques.FindRef(Tipo);
-				if (ClaseBloque)
-				{
-					FVector Posicion(
-						Laberinto->XInicial + i * 100,
-						Laberinto->YInicial + j * 100,
-						Laberinto->ZInicial
-					);
-
-					GetWorld()->SpawnActor<AActor>(ClaseBloque, Posicion, FRotator::ZeroRotator);
-				}
+				FVector Posicion(Laberinto->XInicial + i * 100, Laberinto->YInicial + j * 100, Laberinto->ZInicial);
+				GetWorld()->SpawnActor<AActor>(MapaBloques[Tipo], Posicion, FRotator::ZeroRotator);
 			}
 		}
 	}
