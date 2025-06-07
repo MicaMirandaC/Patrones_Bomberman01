@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\PatronesUnreal\\Patrones_Bomberman01\\Source\\Patrones_Bomberman01\\Patrones_Bomberman01.Build.cs",
+		"D:\\PatronesUnreal\\Patrones_Bomberman01\\Source\\Patrones_Bomberman01.Target.cs",
+		"D:\\PatronesUnreal\\Patrones_Bomberman01\\Source\\Patrones_Bomberman01Editor.Target.cs"
+	],
+	"EngineVersion": "5.5.4"
+}
