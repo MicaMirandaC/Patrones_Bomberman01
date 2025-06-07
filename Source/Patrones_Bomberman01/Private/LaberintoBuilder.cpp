@@ -20,19 +20,15 @@ ALaberintoBuilder::ALaberintoBuilder()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Agregar tipos de bloques al mapa
-	// MBo tipo clase de bloque
 	MapaBloques.Add(1, ABloqueMadera::StaticClass());
 	MapaBloques.Add(2, ABloqueConcreto::StaticClass());
 	MapaBloques.Add(3, ABloqueLadrillo::StaticClass());
 	MapaBloques.Add(4, ABloqueAcero::StaticClass());
 	MapaBloques.Add(5, ABloqueRotador::StaticClass());
-	//MapaDeBloques.Add(6, ABloqueMov::StaticClass());
-
 
 	MapaObstaculos.Add(7, AObstaculo::StaticClass());
 
 	MapaPuertas.Add(8, APuerta::StaticClass());
-
 }
 
 // Called when the game starts or when spawned
