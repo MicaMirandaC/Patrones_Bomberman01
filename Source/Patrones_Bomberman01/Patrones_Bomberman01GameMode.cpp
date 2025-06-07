@@ -42,4 +42,30 @@ void APatrones_Bomberman01GameMode::BeginPlay()
 	//Obtener el laberinto construido por el Director
 	ALaberinto* Laberinto = DirectorLab->GetLaberinto();
 
+
+
+	//Facade
+	MiFachada = GetWorld()->SpawnActor<AEnemigoFacade>
+		(AEnemigoFacade::StaticClass());
+
+	// Escoger aleatoriamente un nivel:
+	int Nivel = FMath::RandRange(1, 2);
+	switch (Nivel)
+	{
+	case 1:
+		MiFachada->Nivel1();
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Nivel 1 - Patrullar"));
+		}
+		break;
+
+	case 2:
+		MiFachada->Nivel2();
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Nivel 2 - Atacar"));
+		}
+		break;
+	}
 }

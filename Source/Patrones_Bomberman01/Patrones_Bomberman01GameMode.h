@@ -1,9 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 #pragma once
+#include "EnemigoFacade.h"
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Patrones_Bomberman01GameMode.generated.h"
-
 class ABloque;
 
 UCLASS(minimalapi)
@@ -26,6 +26,8 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "GameModeBase")
 	class ALaberintoBuilder* BuilderLab;
 
+	//Facade
+	AEnemigoFacade* MiFachada;
 };
 
 

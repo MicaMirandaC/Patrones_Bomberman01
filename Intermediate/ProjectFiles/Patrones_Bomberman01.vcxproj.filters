@@ -11,6 +11,8 @@
     <None Include="..\..\Source\Patrones_Bomberman01Editor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -81,6 +83,21 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\DirectorLaberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Enemigo.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoAereo.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoFacade.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoTerrestre.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoTerrestre2.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\ILaberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
@@ -121,6 +138,21 @@
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\DirectorLaberinto.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Enemigo.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoAereo.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoFacade.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoTerrestre.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoTerrestre2.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\ILaberinto.h">
