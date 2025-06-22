@@ -10,6 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEnemigo() {}
 
 // Begin Cross Module References
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 PATRONES_BOMBERMAN01_API UClass* Z_Construct_UClass_AEnemigo();
@@ -39,7 +40,7 @@ struct Z_Construct_UEnum_Patrones_Bomberman01_EDireccionMovimiento_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "//Enum que define los tipos de movimiento que puede tener un enemigo.\n" },
+		{ "Comment", "//Enum es enumeracion que define los tipos de movimiento que puede tener un enemigo.\n" },
 #endif
 		{ "ElevarZ.Name", "EDireccionMovimiento::ElevarZ" },
 		{ "ModuleRelativePath", "Public/Enemigo.h" },
@@ -47,7 +48,7 @@ struct Z_Construct_UEnum_Patrones_Bomberman01_EDireccionMovimiento_Statics
 		{ "MoverX_ElevarZ.Name", "EDireccionMovimiento::MoverX_ElevarZ" },
 		{ "MoverY.Name", "EDireccionMovimiento::MoverY" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Enum que define los tipos de movimiento que puede tener un enemigo." },
+		{ "ToolTip", "Enum es enumeracion que define los tipos de movimiento que puede tener un enemigo." },
 #endif
 	};
 #endif // WITH_METADATA
@@ -102,17 +103,45 @@ struct Z_Construct_UClass_AEnemigo_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Enemigo.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EstrategiaMovimiento_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PosicionInicial_MetaData[] = {
+		{ "Category", "Enemigo" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)\n" },
+		{ "Comment", "// Datos de movimiento\n" },
 #endif
 		{ "ModuleRelativePath", "Public/Enemigo.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)" },
+		{ "ToolTip", "Datos de movimiento" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DistanciaMaxima_MetaData[] = {
+		{ "Category", "Enemigo" },
+		{ "ModuleRelativePath", "Public/Enemigo.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bAvanzandoHaciaLimite_MetaData[] = {
+		{ "Category", "Enemigo" },
+		{ "ModuleRelativePath", "Public/Enemigo.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Direccion_MetaData[] = {
+		{ "Category", "Enemigo" },
+		{ "ModuleRelativePath", "Public/Enemigo.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EstrategiaMovimiento_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)\n// Puntero a estrategia de movimiento\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Enemigo.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)\nPuntero a estrategia de movimiento" },
 #endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MallaEnemigo;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_PosicionInicial;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_DistanciaMaxima;
+	static void NewProp_bAvanzandoHaciaLimite_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bAvanzandoHaciaLimite;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_Direccion_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_Direccion;
 	static const UECodeGen_Private::FInterfacePropertyParams NewProp_EstrategiaMovimiento;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -123,9 +152,23 @@ struct Z_Construct_UClass_AEnemigo_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_MallaEnemigo = { "MallaEnemigo", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, MallaEnemigo), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MallaEnemigo_MetaData), NewProp_MallaEnemigo_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_PosicionInicial = { "PosicionInicial", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, PosicionInicial), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PosicionInicial_MetaData), NewProp_PosicionInicial_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_DistanciaMaxima = { "DistanciaMaxima", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, DistanciaMaxima), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DistanciaMaxima_MetaData), NewProp_DistanciaMaxima_MetaData) };
+void Z_Construct_UClass_AEnemigo_Statics::NewProp_bAvanzandoHaciaLimite_SetBit(void* Obj)
+{
+	((AEnemigo*)Obj)->bAvanzandoHaciaLimite = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_bAvanzandoHaciaLimite = { "bAvanzandoHaciaLimite", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AEnemigo), &Z_Construct_UClass_AEnemigo_Statics::NewProp_bAvanzandoHaciaLimite_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bAvanzandoHaciaLimite_MetaData), NewProp_bAvanzandoHaciaLimite_MetaData) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_Direccion_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_Direccion = { "Direccion", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, Direccion), Z_Construct_UEnum_Patrones_Bomberman01_EDireccionMovimiento, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Direccion_MetaData), NewProp_Direccion_MetaData) }; // 2685240802
 const UECodeGen_Private::FInterfacePropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_EstrategiaMovimiento = { "EstrategiaMovimiento", nullptr, (EPropertyFlags)0x0014000000000000, UECodeGen_Private::EPropertyGenFlags::Interface, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, EstrategiaMovimiento), Z_Construct_UClass_UIMovimientoEstrategia_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EstrategiaMovimiento_MetaData), NewProp_EstrategiaMovimiento_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemigo_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_MallaEnemigo,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_PosicionInicial,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_DistanciaMaxima,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_bAvanzandoHaciaLimite,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_Direccion_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_Direccion,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_EstrategiaMovimiento,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemigo_Statics::PropPointers) < 2048);
@@ -172,13 +215,13 @@ AEnemigo::~AEnemigo() {}
 struct Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EDireccionMovimiento_StaticEnum, TEXT("EDireccionMovimiento"), &Z_Registration_Info_UEnum_EDireccionMovimiento, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 826403911U) },
+		{ EDireccionMovimiento_StaticEnum, TEXT("EDireccionMovimiento"), &Z_Registration_Info_UEnum_EDireccionMovimiento, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2685240802U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemigo, AEnemigo::StaticClass, TEXT("AEnemigo"), &Z_Registration_Info_UClass_AEnemigo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigo), 2235901711U) },
+		{ Z_Construct_UClass_AEnemigo, AEnemigo::StaticClass, TEXT("AEnemigo"), &Z_Registration_Info_UClass_AEnemigo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigo), 1969786964U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_2743710349(TEXT("/Script/Patrones_Bomberman01"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_1144530992(TEXT("/Script/Patrones_Bomberman01"),
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::EnumInfo));
