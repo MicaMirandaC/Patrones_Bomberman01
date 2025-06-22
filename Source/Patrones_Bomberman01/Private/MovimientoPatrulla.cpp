@@ -4,18 +4,20 @@
 #include "MovimientoPatrulla.h"
 #include "Enemigo.h"
 
-void UMovimientoPatrulla::EjecutarMovimiento(AEnemigo* Enemigo)
+void UMovimientoPatrulla::EjecutarMovimiento(AEnemigo* Enemigo, float DeltaTime)
 {
-	if (!Enemigo) return;
+	//La interfaz exige que EjecutarMovimiento() reciba un AActor*, así que necesitamos castear a AEnemigo dentro de la estrategia para poder acceder a PosicionInicial, DistanciaMaxima, etc.
+	AEnemigo* EnemigoReal = Cast<AEnemigo>(Enemigo);
+	if (!EnemigoReal) return;
 
-	FVector Pos = Enemigo->GetActorLocation();
-	FVector PosInicial = Enemigo->PosicionInicial;
+	FVector Pos = EnemigoReal->GetActorLocation();
+	FVector PosInicial = EnemigoReal->GetPosicionInicial();
 	float Velocidad = 100.f;
-	float Movimiento = Velocidad * Enemigo->GetWorld()->GetDeltaSeconds();
-	float& Distancia = Enemigo->DistanciaMaxima;
-	bool& bAvanza = Enemigo->bAvanzandoHaciaLimite;
+	float Movimiento = Velocidad * DeltaTime;
+	float Distancia = EnemigoReal->GetDistanciaMaxima();
+	bool& bAvanza = EnemigoReal->GetAvanzando();
 
-	switch (Enemigo->GetDireccion())
+	switch (EnemigoReal->GetDireccion())
 	{
 	case EDireccionMovimiento::MoverX:
 	{
@@ -40,16 +42,15 @@ void UMovimientoPatrulla::EjecutarMovimiento(AEnemigo* Enemigo)
 		break;
 	}
 	case EDireccionMovimiento::ElevarZ:
-	{
 		Pos.Z = PosInicial.Z + Distancia;
 		break;
-	}
+
 	case EDireccionMovimiento::MoverX_ElevarZ:
 	{
 		Pos.Z = PosInicial.Z + Distancia;
 
 		float DesplazRel = Pos.X - PosInicial.X;
-		DesplazRel += bAvanza ?Movimiento : -Movimiento;
+		DesplazRel += bAvanza ? Movimiento : -Movimiento;
 
 		if (DesplazRel > Distancia) { bAvanza = false; DesplazRel = Distancia; }
 		else if (DesplazRel < 0.f) { bAvanza = true; DesplazRel = 0.f; }
@@ -57,9 +58,7 @@ void UMovimientoPatrulla::EjecutarMovimiento(AEnemigo* Enemigo)
 		Pos.X = PosInicial.X + DesplazRel;
 		break;
 	}
-	default:
-		break;
 	}
 
-	Enemigo->SetActorLocation(Pos);
+	EnemigoReal->SetActorLocation(Pos);
 }

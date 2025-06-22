@@ -21,6 +21,7 @@ class PATRONES_BOMBERMAN01_API IIPrototype
 	GENERATED_BODY()
 
 public:
+	// Método para clonar el actor
+	virtual AActor* Clonar() = 0;
 
-	virtual AActor* Clonar(FVector NuevaPosicion) = 0;
 };

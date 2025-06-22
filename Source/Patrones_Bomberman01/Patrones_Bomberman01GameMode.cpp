@@ -28,19 +28,19 @@ void APatrones_Bomberman01GameMode::BeginPlay()
 	Super::BeginPlay();
 
 	// Spawn del Builder (LaberintoBuilder)
-	BuilderLab = GetWorld()->SpawnActor<ALaberintoBuilder>(ALaberintoBuilder::StaticClass());
-
-	// Spawn del Director
-	DirectorLab = GetWorld()->SpawnActor<ADirectorLaberinto>(ADirectorLaberinto::StaticClass());
-
-	//Le dices al Director qué Builder va a usar
-	DirectorLab->EstablecerILaberintoBuilder(BuilderLab);
-	
-	// Aqui construís el laberinto usando el patrón
-	DirectorLab->ConstruirLaberinto();
-	
-	//Obtener el laberinto construido por el Director
-	ALaberinto* Laberinto = DirectorLab->GetLaberinto();
+	//BuilderLab = GetWorld()->SpawnActor<ALaberintoBuilder>(ALaberintoBuilder::StaticClass());
+	//
+	//// Spawn del Director
+	//DirectorLab = GetWorld()->SpawnActor<ADirectorLaberinto>(ADirectorLaberinto::StaticClass());
+	//
+	////Le dices al Director qué Builder va a usar
+	//DirectorLab->EstablecerILaberintoBuilder(BuilderLab);
+	//
+	//// Aqui construís el laberinto usando el patrón
+	//DirectorLab->ConstruirLaberinto();
+	//
+	////Obtener el laberinto construido por el Director
+	//ALaberinto* Laberinto = DirectorLab->GetLaberinto();
 
 
 

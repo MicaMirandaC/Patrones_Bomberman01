@@ -17,12 +17,7 @@ AEnemigoTerrestre::AEnemigoTerrestre()
             MallaEnemigo->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
-    //Por defecto inicia en esto
-    EstablecerEstrategia(NewObject<UMovimientoPatrulla>());
+
 }
 
 
-FString AEnemigoTerrestre::NombreDelEnemigo()
-{
-	return "Enemigo Terrestre 1";
-}

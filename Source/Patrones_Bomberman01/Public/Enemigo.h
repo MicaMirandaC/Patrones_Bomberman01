@@ -30,57 +30,35 @@ protected:
 	UStaticMeshComponent* MallaEnemigo;
 
 public:
-	// Métodos públicos para que el Facade pueda controlar el comportamiento
-	//Funcions de POLIMIRFISMO en vez de tareas
-	// Métodos que activan estrategia
-	//Metodo STRATEGY, ya no seran virtual porque ya las hijas heredan del padre
-	void Patrullar();
-	void Atacar();
-	virtual FString NombreDelEnemigo() PURE_VIRTUAL(AEnemigo::NombreDelEnemigo, return " ";);
-	
+	// Patrón Prototype
+	virtual AActor* Clonar() override;
 
-	// Asigna la estrategia de movimiento (Strategy)
+	// Inicializador personalizado
+	void Inicializar(FVector PosicionInicial, float Distancia, EDireccionMovimiento Direccion, TScriptInterface<IIMovimientoEstrategia> Estrategia);
+
+	// Acciones públicas que llama el Facade
+	void Patrullar(float DeltaTime);
+	void Atacar(float DeltaTime);
+
+	// Nueva función: permite que el Facade asigne estrategia
 	void EstablecerEstrategia(TScriptInterface<IIMovimientoEstrategia> NuevaEstrategia);
 
-	// Configura parámetros de movimiento generales
-	void ConfigurarMovimiento(FVector PosInicial, float Distancia, float Velocidad, EDireccionMovimiento Direccion);
+	// Para que Strategy pueda acceder a info necesaria
+	FVector GetPosicionInicial() const { return PosicionInicial; }
+	float GetDistanciaMaxima() const { return DistanciaMaxima; }
+	bool& GetAvanzando() { return bAvanzandoHaciaLimite; }
+	EDireccionMovimiento GetDireccion() const { return Direccion; }
+	void SetDireccion(EDireccionMovimiento NuevaDir) { Direccion = NuevaDir; } 
 
 
-	// Prototype
-	virtual AActor* Clonar(FVector NuevaPosicion) override;
-
-
-	// Getters
-	float GetDistancia() const { return DistanciaMaxima; }
-	float GetVelocidad() const { return VelocidadMovimiento; }
-	EDireccionMovimiento GetDireccion() const { return DireccionMovimientoActual; }
-
-
-	// Parámetros de movimiento
+private:
+	// Variables internas
 	FVector PosicionInicial;
 	float DistanciaMaxima;
-	float VelocidadMovimiento;
 	bool bAvanzandoHaciaLimite;
-	EDireccionMovimiento DireccionMovimientoActual;
-
-
-
-public:
-	// Datos de movimiento
-	UPROPERTY(EditAnywhere)
-	FVector PosicionInicial;
-
-	UPROPERTY(EditAnywhere)
-	float DistanciaMaxima = 200.f;
-
-	UPROPERTY(EditAnywhere)
-	bool bAvanzandoHaciaLimite = true;
-
-	UPROPERTY(EditAnywhere)
 	EDireccionMovimiento Direccion;
 
-	// Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)
-	// Puntero a estrategia de movimiento
+	// Referencia a la estrategia inyectada
 	UPROPERTY()
 	TScriptInterface<IIMovimientoEstrategia> EstrategiaMovimiento;
 };

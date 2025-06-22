@@ -17,8 +17,4 @@ class PATRONES_BOMBERMAN01_API AEnemigoTerrestre2 : public AEnemigo
 public:
 	AEnemigoTerrestre2();
 
-public:
-
-	virtual FString NombreDelEnemigo() override;
-
 };

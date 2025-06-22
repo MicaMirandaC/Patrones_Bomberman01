@@ -16,12 +16,6 @@ AEnemigoAereo::AEnemigoAereo()
             MallaEnemigo->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
-    EstablecerEstrategia(NewObject<UMovimientoPatrulla>());
 }
 
 
-FString AEnemigoAereo::NombreDelEnemigo()
-{
-	return "Enemigo Aéreo";
-}
-//FVector PosInicial, float Distancia, float Velocidad, EDireccionMovimiento Direccion

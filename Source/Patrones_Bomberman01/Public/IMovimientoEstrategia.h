@@ -23,5 +23,5 @@ class PATRONES_BOMBERMAN01_API IIMovimientoEstrategia
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	
-	virtual void EjecutarMovimiento(AEnemigo* Enemigo) = 0;
+	virtual void EjecutarMovimiento(AEnemigo* Enemigo, float DeltaTime) = 0;
 };

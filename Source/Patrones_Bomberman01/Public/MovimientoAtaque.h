@@ -13,5 +13,5 @@ class PATRONES_BOMBERMAN01_API UMovimientoAtaque : public UObject, public IIMovi
 	
 public:	
 
-	virtual void EjecutarMovimiento(AEnemigo* Enemigo) override;
+	virtual void EjecutarMovimiento(AEnemigo* Enemigo, float DeltaTime) override;
 };

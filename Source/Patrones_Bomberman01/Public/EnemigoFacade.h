@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-//#include "EnemigoTerrestre.h"
-//#include "EnemigoTerrestre2.h"
-//#include "EnemigoAereo.h"
+#include "EnemigoTerrestre.h"
+#include "EnemigoTerrestre2.h"
+#include "EnemigoAereo.h"
 #include "Enemigo.h"
 #include "MovimientoAtaque.h"
 #include "MovimientoPatrulla.h"
@@ -33,17 +33,26 @@ public:
 	void Nivel1();//Patrullar(menos velocidad)
 	void Nivel2();//Atacar(mayor velocidad)
 
-//Para unir los tres patrones
 private:
-	// Funciones internas para construir y clonar enemigos
-	AEnemigo* CrearEnemigoBase(TSubclassOf<AEnemigo> ClaseEnemigo, const FVector& Posicion, int Nivel);
-	void ClonarEnemigos(AEnemigo* EnemigoBase, int Cantidad, const FVector& OffsetInicial, float Separacion);
-	
-	// Estrategias reutilizables
-	//Se usan para crear objetos con NewObject en tiempo de ejecución
+	// Estrategias
 	UPROPERTY()
-	TSubclassOf<UObject> ClasePatrulla;
+	UMovimientoPatrulla* EstrategiaPatrulla;
 
 	UPROPERTY()
-	TSubclassOf<UObject> ClaseAtaque;
+	UMovimientoAtaque* EstrategiaAtaque;
+
+	// Enemigos base (uno por tipo)
+	UPROPERTY()
+	AEnemigo* BaseTerrestre;
+
+	UPROPERTY()
+	AEnemigo* BaseTerrestre2;
+
+	UPROPERTY()
+	AEnemigo* BaseAereo;
+
+	// Métodos auxiliares
+	//Recuerda: TScriptInterface<IIMovimientoEstrategia> permite pasar cualquier objeto UObject que implemente tu interfaz, como UMovimientoPatrulla o UMovimientoAtaque, sin necesidad de otra clase base.
+	void InicializarBases(TScriptInterface<IIMovimientoEstrategia> Estrategia); // ? Interfaz que ya usas en todo
+	void ClonarEnemigos();
 };

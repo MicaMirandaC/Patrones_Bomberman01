@@ -4,18 +4,19 @@
 #include "MovimientoAtaque.h"
 #include "Enemigo.h"
 
-void UMovimientoAtaque::EjecutarMovimiento(AEnemigo* Enemigo)
+void UMovimientoAtaque::EjecutarMovimiento(AEnemigo* Enemigo, float DeltaTime)
 {
-	if (!Enemigo) return;
+	AEnemigo* EnemigoReal = Cast<AEnemigo>(Enemigo);
+	if (!EnemigoReal) return;
 
-	FVector Pos = Enemigo->GetActorLocation();
-	FVector PosInicial = Enemigo->PosicionInicial;
-	float Velocidad = 200.f; // más rápido
-	float Movimiento = Velocidad * Enemigo->GetWorld()->GetDeltaSeconds();
-	float& Distancia = Enemigo->DistanciaMaxima;
-	bool& bAvanza = Enemigo->bAvanzandoHaciaLimite;
+	FVector Pos = EnemigoReal->GetActorLocation();
+	FVector PosInicial = EnemigoReal->GetPosicionInicial();
+	float Velocidad = 200.f;
+	float Movimiento = Velocidad * DeltaTime;
+	float Distancia = EnemigoReal->GetDistanciaMaxima();
+	bool& bAvanza = EnemigoReal->GetAvanzando();
 
-	switch (Enemigo->GetDireccion())
+	switch (EnemigoReal->GetDireccion())
 	{
 	case EDireccionMovimiento::MoverX:
 	{
@@ -40,10 +41,9 @@ void UMovimientoAtaque::EjecutarMovimiento(AEnemigo* Enemigo)
 		break;
 	}
 	case EDireccionMovimiento::ElevarZ:
-	{
 		Pos.Z = PosInicial.Z + Distancia;
 		break;
-	}
+
 	case EDireccionMovimiento::MoverX_ElevarZ:
 	{
 		Pos.Z = PosInicial.Z + Distancia;
@@ -57,8 +57,7 @@ void UMovimientoAtaque::EjecutarMovimiento(AEnemigo* Enemigo)
 		Pos.X = PosInicial.X + DesplazRel;
 		break;
 	}
-	default:
-		break;
 	}
-	Enemigo->SetActorLocation(Pos);
+
+	EnemigoReal->SetActorLocation(Pos);
 }

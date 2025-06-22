@@ -13,6 +13,6 @@ class PATRONES_BOMBERMAN01_API UMovimientoPatrulla : public UObject, public IIMo
 
 public:
 	// Implementación del método virtual de la interfaz
-	virtual void EjecutarMovimiento(AEnemigo* Enemigo) override;
+	virtual void EjecutarMovimiento(AEnemigo* Enemigo, float DeltaTime) override;
 
 };
