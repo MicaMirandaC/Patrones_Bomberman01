@@ -2,6 +2,7 @@
 
 
 #include "EnemigoTerrestre2.h"
+#include "MovimientoPatrulla.h"
 
 AEnemigoTerrestre2::AEnemigoTerrestre2()
 {
@@ -15,19 +16,8 @@ AEnemigoTerrestre2::AEnemigoTerrestre2()
             MallaEnemigo->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
+    EstablecerEstrategia(NewObject<UMovimientoPatrulla>());
 }
-
-
-void AEnemigoTerrestre2::Patrullar()
-{
-    ConfigurarMovimiento(GetActorLocation(), 1000.f, 10.f, EDireccionMovimiento::MoverY);
-}
-
-void AEnemigoTerrestre2::Atacar()
-{
-    ConfigurarMovimiento(GetActorLocation(), 1000.f, 100.f, EDireccionMovimiento::MoverY);
-}
-
 
 FString AEnemigoTerrestre2::NombreDelEnemigo()
 {

@@ -2,6 +2,8 @@
 
 
 #include "EnemigoTerrestre.h"
+#include "MovimientoPatrulla.h"
+
 
 AEnemigoTerrestre::AEnemigoTerrestre()
 {
@@ -15,16 +17,8 @@ AEnemigoTerrestre::AEnemigoTerrestre()
             MallaEnemigo->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
-}
-
-void AEnemigoTerrestre::Patrullar()
-{
-    ConfigurarMovimiento(GetActorLocation(), 1000.f, 10.f, EDireccionMovimiento::MoverX);
-}
-
-void AEnemigoTerrestre::Atacar()
-{
-    ConfigurarMovimiento(GetActorLocation(), 1000.f, 100.f, EDireccionMovimiento::MoverX);
+    //Por defecto inicia en esto
+    EstablecerEstrategia(NewObject<UMovimientoPatrulla>());
 }
 
 

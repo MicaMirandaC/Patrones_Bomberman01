@@ -2,6 +2,7 @@
 
 
 #include "EnemigoAereo.h"
+#include "MovimientoPatrulla.h"
 
 AEnemigoAereo::AEnemigoAereo()
 {
@@ -15,17 +16,7 @@ AEnemigoAereo::AEnemigoAereo()
             MallaEnemigo->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
-}
-
-void AEnemigoAereo::Patrullar()
-{
-    // Configura para que se eleve y se mueva horizontalmente
-    ConfigurarMovimiento(GetActorLocation(), 1000.f, 10.f, EDireccionMovimiento::MoverX_ElevarZ);
-}
-
-void AEnemigoAereo::Atacar()
-{
-    ConfigurarMovimiento(GetActorLocation(), 1000.f, 100.f, EDireccionMovimiento::MoverX_ElevarZ);
+    EstablecerEstrategia(NewObject<UMovimientoPatrulla>());
 }
 
 

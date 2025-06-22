@@ -14,6 +14,8 @@ ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 PATRONES_BOMBERMAN01_API UClass* Z_Construct_UClass_AEnemigo();
 PATRONES_BOMBERMAN01_API UClass* Z_Construct_UClass_AEnemigo_NoRegister();
+PATRONES_BOMBERMAN01_API UClass* Z_Construct_UClass_UIMovimientoEstrategia_NoRegister();
+PATRONES_BOMBERMAN01_API UClass* Z_Construct_UClass_UIPrototype_NoRegister();
 PATRONES_BOMBERMAN01_API UEnum* Z_Construct_UEnum_Patrones_Bomberman01_EDireccionMovimiento();
 UPackage* Z_Construct_UPackage__Script_Patrones_Bomberman01();
 // End Cross Module References
@@ -36,11 +38,17 @@ struct Z_Construct_UEnum_Patrones_Bomberman01_EDireccionMovimiento_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Enum que define los tipos de movimiento que puede tener un enemigo.\n" },
+#endif
 		{ "ElevarZ.Name", "EDireccionMovimiento::ElevarZ" },
 		{ "ModuleRelativePath", "Public/Enemigo.h" },
 		{ "MoverX.Name", "EDireccionMovimiento::MoverX" },
 		{ "MoverX_ElevarZ.Name", "EDireccionMovimiento::MoverX_ElevarZ" },
 		{ "MoverY.Name", "EDireccionMovimiento::MoverY" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Enum que define los tipos de movimiento que puede tener un enemigo." },
+#endif
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
@@ -94,18 +102,31 @@ struct Z_Construct_UClass_AEnemigo_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Enemigo.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EstrategiaMovimiento_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Enemigo.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Estrategia de movimiento (usando TScriptInterface para evitar puntero UObject directo)" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MallaEnemigo;
+	static const UECodeGen_Private::FInterfacePropertyParams NewProp_EstrategiaMovimiento;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
+	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AEnemigo>::IsAbstract,
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_MallaEnemigo = { "MallaEnemigo", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, MallaEnemigo), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MallaEnemigo_MetaData), NewProp_MallaEnemigo_MetaData) };
+const UECodeGen_Private::FInterfacePropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_EstrategiaMovimiento = { "EstrategiaMovimiento", nullptr, (EPropertyFlags)0x0014000000000000, UECodeGen_Private::EPropertyGenFlags::Interface, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, EstrategiaMovimiento), Z_Construct_UClass_UIMovimientoEstrategia_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EstrategiaMovimiento_MetaData), NewProp_EstrategiaMovimiento_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemigo_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_MallaEnemigo,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_EstrategiaMovimiento,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemigo_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AEnemigo_Statics::DependentSingletons[])() = {
@@ -113,6 +134,9 @@ UObject* (*const Z_Construct_UClass_AEnemigo_Statics::DependentSingletons[])() =
 	(UObject* (*)())Z_Construct_UPackage__Script_Patrones_Bomberman01,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemigo_Statics::DependentSingletons) < 16);
+const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_AEnemigo_Statics::InterfaceParams[] = {
+	{ Z_Construct_UClass_UIPrototype_NoRegister, (int32)VTABLE_OFFSET(AEnemigo, IIPrototype), false },  // 1531953477
+};
 const UECodeGen_Private::FClassParams Z_Construct_UClass_AEnemigo_Statics::ClassParams = {
 	&AEnemigo::StaticClass,
 	"Engine",
@@ -120,11 +144,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_AEnemigo_Statics::Class
 	DependentSingletons,
 	nullptr,
 	Z_Construct_UClass_AEnemigo_Statics::PropPointers,
-	nullptr,
+	InterfaceParams,
 	UE_ARRAY_COUNT(DependentSingletons),
 	0,
 	UE_ARRAY_COUNT(Z_Construct_UClass_AEnemigo_Statics::PropPointers),
-	0,
+	UE_ARRAY_COUNT(InterfaceParams),
 	0x009000A4u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemigo_Statics::Class_MetaDataParams), Z_Construct_UClass_AEnemigo_Statics::Class_MetaDataParams)
 };
@@ -148,13 +172,13 @@ AEnemigo::~AEnemigo() {}
 struct Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EDireccionMovimiento_StaticEnum, TEXT("EDireccionMovimiento"), &Z_Registration_Info_UEnum_EDireccionMovimiento, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4048279444U) },
+		{ EDireccionMovimiento_StaticEnum, TEXT("EDireccionMovimiento"), &Z_Registration_Info_UEnum_EDireccionMovimiento, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 826403911U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemigo, AEnemigo::StaticClass, TEXT("AEnemigo"), &Z_Registration_Info_UClass_AEnemigo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigo), 1745439661U) },
+		{ Z_Construct_UClass_AEnemigo, AEnemigo::StaticClass, TEXT("AEnemigo"), &Z_Registration_Info_UClass_AEnemigo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigo), 2235901711U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_1669622407(TEXT("/Script/Patrones_Bomberman01"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_2743710349(TEXT("/Script/Patrones_Bomberman01"),
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::EnumInfo));

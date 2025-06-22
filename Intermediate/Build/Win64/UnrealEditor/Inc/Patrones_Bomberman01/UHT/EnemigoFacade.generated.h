@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PATRONES_BOMBERMAN01_EnemigoFacade_generated_h
 
-#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEnemigoFacade(); \
 	friend struct Z_Construct_UClass_AEnemigoFacade_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AEnemigoFacade)
 
 
-#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AEnemigoFacade(AEnemigoFacade&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AEnemigoFacade();
 
 
-#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_12_PROLOG
-#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_15_GENERATED_BODY \
+#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_15_PROLOG
+#define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_18_INCLASS_NO_PURE_DECLS \
+	FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoFacade_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

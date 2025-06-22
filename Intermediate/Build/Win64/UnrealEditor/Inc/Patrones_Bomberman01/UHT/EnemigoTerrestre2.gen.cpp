@@ -82,10 +82,10 @@ AEnemigoTerrestre2::~AEnemigoTerrestre2() {}
 struct Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoTerrestre2_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemigoTerrestre2, AEnemigoTerrestre2::StaticClass, TEXT("AEnemigoTerrestre2"), &Z_Registration_Info_UClass_AEnemigoTerrestre2, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigoTerrestre2), 1717094153U) },
+		{ Z_Construct_UClass_AEnemigoTerrestre2, AEnemigoTerrestre2::StaticClass, TEXT("AEnemigoTerrestre2"), &Z_Registration_Info_UClass_AEnemigoTerrestre2, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigoTerrestre2), 815874830U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoTerrestre2_h_1836772136(TEXT("/Script/Patrones_Bomberman01"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoTerrestre2_h_3621554076(TEXT("/Script/Patrones_Bomberman01"),
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoTerrestre2_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_EnemigoTerrestre2_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

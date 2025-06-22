@@ -18,9 +18,6 @@ public:
 	AEnemigoTerrestre();
 
 public:
-	// Sobrescribimos las funciones virtuales
-	virtual void Patrullar() override;
-	virtual void Atacar() override;
 
 	virtual FString NombreDelEnemigo() override;
 };

@@ -18,8 +18,6 @@ public:
 	AEnemigoTerrestre2();
 
 public:
-	virtual void Patrullar() override;
-	virtual void Atacar() override;
 
 	virtual FString NombreDelEnemigo() override;
 

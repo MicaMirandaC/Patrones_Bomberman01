@@ -101,10 +101,22 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\ILaberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\IMovimientoEstrategia.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\IPrototype.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Laberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\LaberintoBuilder.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoAtaque.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoPatrulla.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Obstaculo.cpp">
@@ -158,10 +170,22 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\ILaberinto.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\IMovimientoEstrategia.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\IPrototype.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Laberinto.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\LaberintoBuilder.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoAtaque.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoPatrulla.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Obstaculo.h">

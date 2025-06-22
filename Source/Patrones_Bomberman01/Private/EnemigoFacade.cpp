@@ -1,7 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "EnemigoFacade.h"
+#include "EnemigoFacade.h"ç
+#include "MovimientoPatrulla.h"
+#include "MovimientoAtaque.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 
 // Sets default values
 AEnemigoFacade::AEnemigoFacade()
@@ -9,78 +13,89 @@ AEnemigoFacade::AEnemigoFacade()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// Asignamos las clases de estrategia
+	ClasePatrulla = UMovimientoPatrulla::StaticClass();
+	ClaseAtaque = UMovimientoAtaque::StaticClass();
 }
 
 // Called when the game starts or when spawned
 void AEnemigoFacade::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AEnemigoFacade::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-}
-
-void AEnemigoFacade::AgregarEnemigo(AEnemigo* enemigo)
-{
-	// Verifica si el enemigo no es nulo antes de agregarlo
-	if (enemigo)
-	{
-		Enemigos.Add(enemigo);//Añade todos los enemigos
-	}
-}
-
-void AEnemigoFacade::CantDeEnemigos(TSubclassOf<AEnemigo> ClaseEnemigo, int32 Cantidad, FVector PosInicial, float Espaciado, float Distancia, float Velocidad, EDireccionMovimiento Direccion)
-{
-	UWorld* Mundo = GetWorld();
-	if (!Mundo || !*ClaseEnemigo) return;
-
-	for (int32 i = 0; i < Cantidad; ++i)
-	{
-		FVector Pos = PosInicial + FVector(Espaciado * i, 0.f, 0.f);  // Puedes variar eje según tipo de enemigo
-		FActorSpawnParameters Params;
-		AEnemigo* Nuevo = Mundo->SpawnActor<AEnemigo>(ClaseEnemigo, Pos, FRotator::ZeroRotator, Params);
-		if (Nuevo)
-		{
-			Nuevo->ConfigurarMovimiento(Pos, Distancia, Velocidad, Direccion);
-		}
-	}
 }
 
 void AEnemigoFacade::Nivel1()
 {
-	FVector PosInicial = GetActorLocation();
-	
-	CantDeEnemigos(AEnemigoTerrestre::StaticClass(), 3, PosInicial + FVector(0.f, 0.f, 0.f), 200.f, 1000.f, 10.f, EDireccionMovimiento::MoverX);
-	CantDeEnemigos(AEnemigoTerrestre2::StaticClass(), 3, PosInicial + FVector(0.f, 0.f, 0.f), 200.f, 1000.f, 10.f, EDireccionMovimiento::MoverY);
-	CantDeEnemigos(AEnemigoAereo::StaticClass(), 3, PosInicial + FVector(0.f, 0.f, 300.f), 200.f, 1000.f, 10.f, EDireccionMovimiento::MoverX_ElevarZ);
-
-	for (AEnemigo* enemigo : Enemigos)
+	AEnemigo* Base = CrearEnemigoBase(AEnemigo::StaticClass(), FVector(0, 0, 100), 1);
+	if (Base)
 	{
-		if (enemigo)
-		{
-			enemigo->Patrullar();
-		}
+		ClonarEnemigos(Base, 4, FVector(200, 0, 100), 150);
 	}
 }
-//CantDeEnemigos(TSubclassOf<AEnemigo> ClaseEnemigo, int32 Cantidad, FVector PosInicial, float Espaciado, float Distancia, float Velocidad, EDireccionMovimiento Direccion)
+
 void AEnemigoFacade::Nivel2()
 {
-	FVector PosInicial = GetActorLocation();
-	
-	CantDeEnemigos(AEnemigoTerrestre::StaticClass(), 3, PosInicial + FVector(0.f, 0.f, 0.f), 200.f, 1000.f, 100.f, EDireccionMovimiento::MoverX);
-	CantDeEnemigos(AEnemigoTerrestre2::StaticClass(), 6, PosInicial + FVector(0.f, 0.f, 0.f), 200.f, 1000.f, 100.f, EDireccionMovimiento::MoverY);
-	CantDeEnemigos(AEnemigoAereo::StaticClass(), 3, PosInicial + FVector(0.f, 0.f, 300.f), 200.f, 1000.f, 100.f, EDireccionMovimiento::MoverX_ElevarZ);
-
-	for (AEnemigo* enemigo : Enemigos)
+	AEnemigo* Base = CrearEnemigoBase(AEnemigo::StaticClass(), FVector(0, 500, 100), 2);
+	if (Base)
 	{
-		if (enemigo)
+		ClonarEnemigos(Base, 6, FVector(200, 500, 100), 150);
+	}
+}
+
+AEnemigo* AEnemigoFacade::CrearEnemigoBase(TSubclassOf<AEnemigo> ClaseEnemigo, const FVector& Posicion, int Nivel)
+{
+	if (!ClaseEnemigo) return nullptr;
+
+	UWorld* Mundo = GetWorld();
+	if (!Mundo) return nullptr;
+
+	AEnemigo* Enemigo = Mundo->SpawnActor<AEnemigo>(ClaseEnemigo, Posicion, FRotator::ZeroRotator);
+	if (!Enemigo) return nullptr;
+
+	// Asignar estrategia según el nivel
+	UObject* Estrategia = nullptr;
+	if (Nivel == 1)
+	{
+		Estrategia = NewObject<UObject>(this, ClasePatrulla);
+	}
+	else if (Nivel == 2)
+	{
+		Estrategia = NewObject<UObject>(this, ClaseAtaque);
+	}
+
+	if (Estrategia && Enemigo)
+	{
+		TScriptInterface<IIMovimientoEstrategia> IEstrategia(Estrategia);
+		if (IEstrategia)
 		{
-			enemigo->Atacar();
+			Enemigo->AsignarEstrategiaMovimiento(IEstrategia);
+		}
+	}
+
+	return Enemigo;
+}
+
+void AEnemigoFacade::ClonarEnemigos(AEnemigo* EnemigoBase, int Cantidad, const FVector& OffsetInicial, float Separacion)
+{
+	if (!EnemigoBase) return;
+
+	UWorld* Mundo = GetWorld();
+	if (!Mundo) return;
+
+	for (int i = 0; i < Cantidad; ++i)
+	{
+		FVector Posicion = OffsetInicial + FVector(i * Separacion, 0, 0);
+		AEnemigo* Clon = Mundo->SpawnActor<AEnemigo>(EnemigoBase->GetClass(), Posicion, FRotator::ZeroRotator);
+		if (Clon)
+		{
+			Clon->CopiaParametrosDe(EnemigoBase); // Copia dirección, distancia, velocidad, etc.
 		}
 	}
 }
+

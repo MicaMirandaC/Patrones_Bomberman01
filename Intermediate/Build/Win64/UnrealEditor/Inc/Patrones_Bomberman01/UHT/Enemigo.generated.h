@@ -20,7 +20,8 @@ private: \
 	friend struct Z_Construct_UClass_AEnemigo_Statics; \
 public: \
 	DECLARE_CLASS(AEnemigo, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Patrones_Bomberman01"), NO_API) \
-	DECLARE_SERIALIZER(AEnemigo)
+	DECLARE_SERIALIZER(AEnemigo) \
+	virtual UObject* _getUObject() const override { return const_cast<AEnemigo*>(this); }
 
 
 #define FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_16_ENHANCED_CONSTRUCTORS \

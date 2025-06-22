@@ -2,6 +2,8 @@
 
 
 #include "Enemigo.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Engine/StaticMesh.h"
 
 // Sets default values
 AEnemigo::AEnemigo()
@@ -24,18 +26,17 @@ AEnemigo::AEnemigo()
 		MallaEnemigo->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	}
 
-	bAvanzandoHaciaLimite = true;
-	DistanciaMaxima = 0.f;
-	VelocidadMovimiento = 0.f;
-	DireccionMovimientoActual = EDireccionMovimiento::MoverX;
-
+    bAvanzandoHaciaLimite = true;
+    DistanciaMaxima = 0.f;
+    VelocidadMovimiento = 0.f;
+    DireccionMovimientoActual = EDireccionMovimiento::MoverX;
+	EstrategiaMovimiento = nullptr;
 }
 
 // Called when the game starts or when spawned
 void AEnemigo::BeginPlay()
 {
 	Super::BeginPlay();
-
 	PosicionInicial = GetActorLocation();
 }
 
@@ -43,95 +44,6 @@ void AEnemigo::BeginPlay()
 void AEnemigo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-    FVector PosicionActual = GetActorLocation();
-    float Movimiento = VelocidadMovimiento * DeltaTime;
-
-    switch (DireccionMovimientoActual)
-    {
-    case EDireccionMovimiento::MoverX:
-    {
-        // Distancia relativa actual desde el origen
-        float DesplazamientoRelativo = PosicionActual.X - PosicionInicial.X;
-
-        // Actualizamos el desplazamiento relativo según dirección
-        DesplazamientoRelativo += bAvanzandoHaciaLimite ? Movimiento : -Movimiento;
-
-        // Si nos pasamos del límite invertimos la dirección y corregimos el desplazamiento
-        if (DesplazamientoRelativo > DistanciaMaxima)
-        {
-            bAvanzandoHaciaLimite = false;
-            DesplazamientoRelativo = DistanciaMaxima; // corregimos para no pasar límite
-        }
-        else if (DesplazamientoRelativo < 0.f)
-        {
-            bAvanzandoHaciaLimite = true;
-            DesplazamientoRelativo = 0.f; // corregimos para no pasar límite inverso
-        }
-
-        // Calculamos la nueva posición absoluta usando el desplazamiento relativo
-        PosicionActual.X = PosicionInicial.X + DesplazamientoRelativo;
-        break;
-    }
-
-    case EDireccionMovimiento::MoverY:
-    {
-        float DesplazamientoRelativo = PosicionActual.Y - PosicionInicial.Y;
-        DesplazamientoRelativo += bAvanzandoHaciaLimite ? Movimiento : -Movimiento;
-
-        if (DesplazamientoRelativo > DistanciaMaxima)
-        {
-            bAvanzandoHaciaLimite = false;
-            DesplazamientoRelativo = DistanciaMaxima;
-        }
-        else if (DesplazamientoRelativo < 0.f)
-        {
-            bAvanzandoHaciaLimite = true;
-            DesplazamientoRelativo = 0.f;
-        }
-
-        PosicionActual.Y = PosicionInicial.Y + DesplazamientoRelativo;
-        break;
-    }
-
-    case EDireccionMovimiento::ElevarZ:
-    {
-        PosicionActual.Z = PosicionInicial.Z + DistanciaMaxima;
-        break;
-    }
-
-    case EDireccionMovimiento::MoverX_ElevarZ:
-    {
-        PosicionActual.Z = PosicionInicial.Z + DistanciaMaxima;
-
-        float DesplazamientoRelativo = PosicionActual.X - PosicionInicial.X;
-        DesplazamientoRelativo += bAvanzandoHaciaLimite ? Movimiento : -Movimiento;
-
-        if (DesplazamientoRelativo > DistanciaMaxima)
-        {
-            bAvanzandoHaciaLimite = false;
-            DesplazamientoRelativo = DistanciaMaxima;
-        }
-        else if (DesplazamientoRelativo < 0.f)
-        {
-            bAvanzandoHaciaLimite = true;
-            DesplazamientoRelativo = 0.f;
-        }
-
-        PosicionActual.X = PosicionInicial.X + DesplazamientoRelativo;
-        break;
-    }
-    }
-
-    SetActorLocation(PosicionActual);
-}
-
-void AEnemigo::Patrullar()
-{
-}
-
-void AEnemigo::Atacar()
-{
 }
 
 void AEnemigo::ConfigurarMovimiento(FVector PosInicial, float Distancia, float Velocidad, EDireccionMovimiento Direccion)
@@ -142,3 +54,54 @@ void AEnemigo::ConfigurarMovimiento(FVector PosInicial, float Distancia, float V
 	DireccionMovimientoActual = Direccion;
 	bAvanzandoHaciaLimite = true;
 }
+
+void AEnemigo::EstablecerEstrategia(TScriptInterface<IIMovimientoEstrategia> NuevaEstrategia)
+{
+	EstrategiaMovimiento = NuevaEstrategia;
+}
+
+
+void AEnemigo::Patrullar()
+{
+   if (EstrategiaMovimiento)
+	{
+		EstrategiaMovimiento->Execute_EjecutarMovimiento(EstrategiaMovimiento.GetObject(), this, true);
+	}
+}
+
+void AEnemigo::Atacar()
+{
+	if (EstrategiaMovimiento)
+	{
+		EstrategiaMovimiento->Execute_EjecutarMovimiento(EstrategiaMovimiento.GetObject(), this, false);
+	}
+}
+
+AActor* AEnemigo::Clonar(FVector NuevaPosicion)
+{
+	UWorld* Mundo = GetWorld();
+	if (!Mundo) return nullptr;
+
+	FActorSpawnParameters Params;
+	AEnemigo* Clon = Mundo->SpawnActor<AEnemigo>(GetClass(), NuevaPosicion, FRotator::ZeroRotator, Params);
+
+	if (Clon)
+	{
+		Clon->ConfigurarMovimiento(NuevaPosicion, DistanciaMaxima, VelocidadMovimiento, DireccionMovimientoActual);
+
+		// Copiamos la estrategia al clon
+		if (EstrategiaMovimiento)
+		{
+			UObject* EstrategiaObj = EstrategiaMovimiento.GetObject();
+			UObject* Copia = DuplicateObject<UObject>(EstrategiaObj, Clon);
+
+			TScriptInterface<IIMovimientoEstrategia> NuevaEstrategia;
+			NuevaEstrategia.SetObject(Copia);
+			NuevaEstrategia.SetInterface(Cast<IIMovimientoEstrategia>(Copia));
+
+			Clon->EstablecerEstrategia(NuevaEstrategia);
+		}
+	}
+	return Clon;
+}
+
