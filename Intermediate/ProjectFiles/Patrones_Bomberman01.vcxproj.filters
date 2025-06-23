@@ -83,6 +83,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\DirectorLaberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Efecto_Observer.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Enemigo.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
@@ -98,6 +101,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoTerrestre2.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\GrupoPastillas_Composide.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\ILaberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
@@ -107,10 +113,16 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\IPrototype.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\ISuscriptor.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Laberinto.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\LaberintoBuilder.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Moneda_Trampa.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoAtaque.cpp">
@@ -119,7 +131,22 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoPatrulla.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Notificador.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Obstaculo.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Obstaculo_Observer.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\PastillaBase.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\PastillaPuntaje.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\PastillaVidas.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Puerta.cpp">
@@ -152,6 +179,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\DirectorLaberinto.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Efecto_Observer.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Enemigo.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
@@ -167,6 +197,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoTerrestre2.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\GrupoPastillas_Composide.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\ILaberinto.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
@@ -176,10 +209,16 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\IPrototype.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\ISuscriptor.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Laberinto.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\LaberintoBuilder.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Moneda_Trampa.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoAtaque.h">
@@ -188,7 +227,22 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoPatrulla.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Notificador.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Obstaculo.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Obstaculo_Observer.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\PastillaBase.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\PastillaPuntaje.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\PastillaVidas.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Puerta.h">

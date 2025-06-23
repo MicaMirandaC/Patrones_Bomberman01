@@ -32,13 +32,18 @@ AEnemigo::AEnemigo()
 void AEnemigo::BeginPlay()
 {
 	Super::BeginPlay();
-	PosicionInicial = GetActorLocation(); // Guarda punto de inicio
+	if (!bEsBase)
+	{
+		PosicionInicial = GetActorLocation(); // Solo los clones definen esto
+	}
 }
 
 // Called every frame
 void AEnemigo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bEsBase) return; // <- Clave: evita que el base se mueva
 
 	if (EstrategiaMovimiento)
 	{

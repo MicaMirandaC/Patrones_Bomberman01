@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Patrones_Bomberman01GameMode.generated.h"
-class ABloque;
+class ABloque;class AGrupoPastillas_Composide; class PartillaVidas; class PartillaPuntaje; class AEnemigoTerrestre; class AEnemigoAereo;
 
 UCLASS(minimalapi)
 class APatrones_Bomberman01GameMode : public AGameModeBase
@@ -28,6 +28,8 @@ private:
 
 	//Facade
 	AEnemigoFacade* MiFachada;
+
+
 };
 
 

@@ -2,8 +2,6 @@
 
 
 #include "EnemigoFacade.h"
-//#include "MovimientoPatrulla.h"
-//#include "MovimientoAtaque.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 
@@ -45,20 +43,34 @@ void AEnemigoFacade::InicializarBases(TScriptInterface<IIMovimientoEstrategia> E
 	UWorld* Mundo = GetWorld();
 	if (!Mundo) return;
 
-	// Terrestre
-	BaseTerrestre = Mundo->SpawnActor<AEnemigoTerrestre>();
-	BaseTerrestre->EstablecerEstrategia(Estrategia);
-	BaseTerrestre->SetDireccion(EDireccionMovimiento::MoverX);
+	// Posiciones iniciales separadas para cada base
+	FVector PosBaseTerrestre(0.f, 0.f, 0.f);
+	FVector PosBaseTerrestre2(0.f, 300.f, 0.f);
+	FVector PosBaseAereo(0.f, 600.f, 200.f); // Elevado en Z para el aéreo
 
-	// Terrestre 2
-	BaseTerrestre2 = Mundo->SpawnActor<AEnemigoTerrestre2>();
-	BaseTerrestre2->EstablecerEstrategia(Estrategia);
-	BaseTerrestre2->SetDireccion(EDireccionMovimiento::MoverY);
+	// === Terrestre Base ===
+	BaseTerrestre = Mundo->SpawnActor<AEnemigoTerrestre>(PosBaseTerrestre, FRotator::ZeroRotator);
+	BaseTerrestre->Inicializar(PosBaseTerrestre, 500.f, EDireccionMovimiento::MoverX, Estrategia);
+	BaseTerrestre->SetEsBase(true);
+	BaseTerrestre->SetActorHiddenInGame(true);
+	BaseTerrestre->SetActorEnableCollision(false);
+	BaseTerrestre->SetActorTickEnabled(false);
 
-	// Aéreo
-	BaseAereo = Mundo->SpawnActor<AEnemigoAereo>();
-	BaseAereo->EstablecerEstrategia(Estrategia);
-	BaseAereo->SetDireccion(EDireccionMovimiento::MoverX_ElevarZ);
+	// === Terrestre2 Base ===
+	BaseTerrestre2 = Mundo->SpawnActor<AEnemigoTerrestre2>(PosBaseTerrestre2, FRotator::ZeroRotator);
+	BaseTerrestre2->Inicializar(PosBaseTerrestre2, 500.f, EDireccionMovimiento::MoverY, Estrategia);
+	BaseTerrestre2->SetEsBase(true);
+	BaseTerrestre2->SetActorHiddenInGame(true);
+	BaseTerrestre2->SetActorEnableCollision(false);
+	BaseTerrestre2->SetActorTickEnabled(false);
+
+	// === Aéreo Base ===
+	BaseAereo = Mundo->SpawnActor<AEnemigoAereo>(PosBaseAereo, FRotator::ZeroRotator);
+	BaseAereo->Inicializar(PosBaseAereo, 500.f, EDireccionMovimiento::MoverX_ElevarZ, Estrategia);
+	BaseAereo->SetEsBase(true);
+	BaseAereo->SetActorHiddenInGame(true);
+	BaseAereo->SetActorEnableCollision(false);
+	BaseAereo->SetActorTickEnabled(false);
 }
 
 void AEnemigoFacade::ClonarEnemigos()
@@ -72,14 +84,48 @@ void AEnemigoFacade::ClonarEnemigos()
 	{
 		FVector Offset(i * Separacion, 0, 0);
 
-		AEnemigo* Clon1 = Cast<AEnemigo>(BaseTerrestre->Clonar());
-		if (Clon1) Clon1->SetActorLocation(BaseTerrestre->GetActorLocation() + Offset);
+		if (BaseTerrestre)
+		{
+			AEnemigo* Clon1 = Cast<AEnemigo>(BaseTerrestre->Clonar());
+			if (Clon1)
+			{
+				// Si se mueve en X, desplazar en Y para no encimarse
+				if (BaseTerrestre->GetDireccion() == EDireccionMovimiento::MoverX)
+					Offset = FVector(0.f, i * Separacion, 0.f);
+				else
+					Offset = FVector(i * Separacion, 0.f, 0.f);
 
-		AEnemigo* Clon2 = Cast<AEnemigo>(BaseTerrestre2->Clonar());
-		if (Clon2) Clon2->SetActorLocation(BaseTerrestre2->GetActorLocation() + Offset + FVector(0, 300, 0));
+				Clon1->SetActorLocation(BaseTerrestre->GetActorLocation() + Offset);
+			}
+		}
 
-		AEnemigo* Clon3 = Cast<AEnemigo>(BaseAereo->Clonar());
-		if (Clon3) Clon3->SetActorLocation(BaseAereo->GetActorLocation() + Offset + FVector(0, 600, 0));
+		if (BaseTerrestre2)
+		{
+			AEnemigo* Clon2 = Cast<AEnemigo>(BaseTerrestre2->Clonar());
+			if (Clon2)
+			{
+				if (BaseTerrestre2->GetDireccion() == EDireccionMovimiento::MoverX)
+					Offset = FVector(0.f, i * Separacion, 0.f);
+				else
+					Offset = FVector(i * Separacion, 0.f, 0.f);
+
+				Clon2->SetActorLocation(BaseTerrestre2->GetActorLocation() + Offset);
+			}
+		}
+
+		if (BaseAereo)
+		{
+			AEnemigo* Clon3 = Cast<AEnemigo>(BaseAereo->Clonar());
+			if (Clon3)
+			{
+				if (BaseAereo->GetDireccion() == EDireccionMovimiento::MoverX)
+					Offset = FVector(0.f, i * Separacion, 0.f);
+				else
+					Offset = FVector(i * Separacion, 0.f, 0.f);
+
+				Clon3->SetActorLocation(BaseAereo->GetActorLocation() + Offset);
+			}
+		}
 	}
 }
 

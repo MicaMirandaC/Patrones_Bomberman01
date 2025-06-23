@@ -17,4 +17,5 @@ class PATRONES_BOMBERMAN01_API AEnemigoTerrestre : public AEnemigo
 public:
 	AEnemigoTerrestre();
 
+	
 };

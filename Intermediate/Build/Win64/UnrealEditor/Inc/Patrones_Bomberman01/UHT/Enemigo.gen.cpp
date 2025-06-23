@@ -102,6 +102,9 @@ struct Z_Construct_UClass_AEnemigo_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Enemigo.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bEsBase_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Enemigo.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EstrategiaMovimiento_MetaData[] = {
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "// Referencia a la estrategia inyectada\n" },
@@ -113,6 +116,8 @@ struct Z_Construct_UClass_AEnemigo_Statics
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MallaEnemigo;
+	static void NewProp_bEsBase_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bEsBase;
 	static const UECodeGen_Private::FInterfacePropertyParams NewProp_EstrategiaMovimiento;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -123,9 +128,15 @@ struct Z_Construct_UClass_AEnemigo_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_MallaEnemigo = { "MallaEnemigo", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, MallaEnemigo), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MallaEnemigo_MetaData), NewProp_MallaEnemigo_MetaData) };
+void Z_Construct_UClass_AEnemigo_Statics::NewProp_bEsBase_SetBit(void* Obj)
+{
+	((AEnemigo*)Obj)->bEsBase = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_bEsBase = { "bEsBase", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AEnemigo), &Z_Construct_UClass_AEnemigo_Statics::NewProp_bEsBase_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bEsBase_MetaData), NewProp_bEsBase_MetaData) };
 const UECodeGen_Private::FInterfacePropertyParams Z_Construct_UClass_AEnemigo_Statics::NewProp_EstrategiaMovimiento = { "EstrategiaMovimiento", nullptr, (EPropertyFlags)0x0044000000000000, UECodeGen_Private::EPropertyGenFlags::Interface, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemigo, EstrategiaMovimiento), Z_Construct_UClass_UIMovimientoEstrategia_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EstrategiaMovimiento_MetaData), NewProp_EstrategiaMovimiento_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemigo_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_MallaEnemigo,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_bEsBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemigo_Statics::NewProp_EstrategiaMovimiento,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemigo_Statics::PropPointers) < 2048);
@@ -175,10 +186,10 @@ struct Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman0
 		{ EDireccionMovimiento_StaticEnum, TEXT("EDireccionMovimiento"), &Z_Registration_Info_UEnum_EDireccionMovimiento, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2685240802U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemigo, AEnemigo::StaticClass, TEXT("AEnemigo"), &Z_Registration_Info_UClass_AEnemigo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigo), 3861482613U) },
+		{ Z_Construct_UClass_AEnemigo, AEnemigo::StaticClass, TEXT("AEnemigo"), &Z_Registration_Info_UClass_AEnemigo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigo), 2330561856U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_3685944246(TEXT("/Script/Patrones_Bomberman01"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_31004010(TEXT("/Script/Patrones_Bomberman01"),
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Patrones_Bomberman01_Source_Patrones_Bomberman01_Public_Enemigo_h_Statics::EnumInfo));

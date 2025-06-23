@@ -39,8 +39,7 @@ public:
 	// Acciones públicas que llama el Facade
 	void Patrullar(float DeltaTime);
 	void Atacar(float DeltaTime);
-
-	// Nueva función: permite que el Facade asigne estrategia
+	//Permite que el Facade asigne estrategia
 	void EstablecerEstrategia(TScriptInterface<IIMovimientoEstrategia> NuevaEstrategia);
 
 	// Para que Strategy pueda acceder a info necesaria
@@ -49,6 +48,12 @@ public:
 	bool& GetAvanzando() { return bAvanzandoHaciaLimite; }
 	EDireccionMovimiento GetDireccion() const { return Direccion; }
 	void SetDireccion(EDireccionMovimiento NuevaDir) { Direccion = NuevaDir; } 
+
+
+	// Marcar si es un clon o el base
+	void SetEsBase(bool bEsBase_) { bEsBase = bEsBase_; }
+	UPROPERTY()
+	bool bEsBase = false; // <- Clave para evitar que el base se mueva
 
 
 private:

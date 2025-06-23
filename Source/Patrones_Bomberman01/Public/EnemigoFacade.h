@@ -42,14 +42,9 @@ private:
 	UMovimientoAtaque* EstrategiaAtaque;
 
 	// Enemigos base (uno por tipo)
-	UPROPERTY()
-	AEnemigo* BaseTerrestre;
-
-	UPROPERTY()
-	AEnemigo* BaseTerrestre2;
-
-	UPROPERTY()
-	AEnemigo* BaseAereo;
+	UPROPERTY() AEnemigo* BaseTerrestre;
+	UPROPERTY() AEnemigo* BaseTerrestre2;
+	UPROPERTY() AEnemigo* BaseAereo;
 
 	// Métodos auxiliares
 	//Recuerda: TScriptInterface<IIMovimientoEstrategia> permite pasar cualquier objeto UObject que implemente tu interfaz, como UMovimientoPatrulla o UMovimientoAtaque, sin necesidad de otra clase base.
