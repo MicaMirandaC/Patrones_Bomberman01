@@ -38,6 +38,13 @@ void AEnemigoFacade::Nivel2()
 	ClonarEnemigos();
 }
 
+void AEnemigoFacade::Nivel3()
+{
+	EstrategiaAleatoria = NewObject<UMovimientoAleatorio>(this);
+	InicializarBases(EstrategiaAleatoria);
+	ClonarEnemigos();
+}
+
 void AEnemigoFacade::InicializarBases(TScriptInterface<IIMovimientoEstrategia> Estrategia)
 {
 	UWorld* Mundo = GetWorld();
@@ -52,6 +59,7 @@ void AEnemigoFacade::InicializarBases(TScriptInterface<IIMovimientoEstrategia> E
 	BaseTerrestre = Mundo->SpawnActor<AEnemigoTerrestre>(PosBaseTerrestre, FRotator::ZeroRotator);
 	BaseTerrestre->Inicializar(PosBaseTerrestre, 500.f, EDireccionMovimiento::MoverX, Estrategia);
 	BaseTerrestre->SetEsBase(true);
+	//Oculta el enemigo en el juego(no se verá en pantalla).
 	BaseTerrestre->SetActorHiddenInGame(true);
 	BaseTerrestre->SetActorEnableCollision(false);
 	BaseTerrestre->SetActorTickEnabled(false);
@@ -71,6 +79,7 @@ void AEnemigoFacade::InicializarBases(TScriptInterface<IIMovimientoEstrategia> E
 	BaseAereo->SetActorHiddenInGame(true);
 	BaseAereo->SetActorEnableCollision(false);
 	BaseAereo->SetActorTickEnabled(false);
+
 }
 
 void AEnemigoFacade::ClonarEnemigos()
@@ -126,6 +135,7 @@ void AEnemigoFacade::ClonarEnemigos()
 				Clon3->SetActorLocation(BaseAereo->GetActorLocation() + Offset);
 			}
 		}
+		
 	}
 }
 

@@ -92,6 +92,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoAereo.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoAleatorio.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoFacade.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
@@ -123,6 +126,9 @@
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Moneda_Trampa.cpp">
+      <Filter>Source\Patrones_Bomberman01\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoAleatorio.cpp">
       <Filter>Source\Patrones_Bomberman01\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoAtaque.cpp">
@@ -188,6 +194,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoAereo.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoAleatorio.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoFacade.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
@@ -219,6 +228,9 @@
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Moneda_Trampa.h">
+      <Filter>Source\Patrones_Bomberman01\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoAleatorio.h">
       <Filter>Source\Patrones_Bomberman01\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoAtaque.h">

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
+#include "MovimientoAleatorio.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "EnemigoTerrestre.h"
@@ -32,8 +32,10 @@ public:
 	//Metodos principales
 	void Nivel1();//Patrullar(menos velocidad)
 	void Nivel2();//Atacar(mayor velocidad)
+	//DESAFIO
+	void Nivel3();//Movimiento Aleatorio 
 
-private:
+public:
 	// Estrategias
 	UPROPERTY()
 	UMovimientoPatrulla* EstrategiaPatrulla;
@@ -41,10 +43,14 @@ private:
 	UPROPERTY()
 	UMovimientoAtaque* EstrategiaAtaque;
 
+	UPROPERTY()
+	UMovimientoAleatorio* EstrategiaAleatoria;
+
 	// Enemigos base (uno por tipo)
 	UPROPERTY() AEnemigo* BaseTerrestre;
 	UPROPERTY() AEnemigo* BaseTerrestre2;
 	UPROPERTY() AEnemigo* BaseAereo;
+	
 
 	// Métodos auxiliares
 	//Recuerda: TScriptInterface<IIMovimientoEstrategia> permite pasar cualquier objeto UObject que implemente tu interfaz, como UMovimientoPatrulla o UMovimientoAtaque, sin necesidad de otra clase base.

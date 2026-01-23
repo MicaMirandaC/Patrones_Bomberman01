@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2CCFAD5E-942A-3AC1-98A6-1B8D8E54A3F4}</ProjectGuid>
+    <ProjectGuid>{837B025A-14FF-3A53-A63E-54F7387B41A9}</ProjectGuid>
     <RootNamespace>Patrones_Bomberman01</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
@@ -320,6 +320,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoAereo.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoAleatorio.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\EnemigoFacade.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -351,6 +354,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\Moneda_Trampa.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoAleatorio.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Private\MovimientoAtaque.cpp">
@@ -413,6 +419,9 @@
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoAereo.h">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoAleatorio.h">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\EnemigoFacade.h">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -444,6 +453,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\Moneda_Trampa.h">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoAleatorio.h">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Patrones_Bomberman01\Public\MovimientoAtaque.h">

@@ -72,6 +72,14 @@ void APatrones_Bomberman01GameMode::BeginPlay()
 			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Nivel 2 - Atacar"));
 		}
 		break;
+
+	case 3:
+		MiFachada->Nivel3();
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Nivel 3 - MovAleatorio"));
+		}
+		break;
 	}
 
 	

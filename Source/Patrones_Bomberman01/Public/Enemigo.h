@@ -8,7 +8,7 @@
 UENUM()//Enum es enumeracion que define los tipos de movimiento que puede tener un enemigo.
 enum class EDireccionMovimiento : uint8
 {
-	MoverX, MoverY, ElevarZ, MoverX_ElevarZ
+	MoverX, MoverY, ElevarZ, MoverX_ElevarZ, MovAleatorio
 };
 UCLASS()
 class PATRONES_BOMBERMAN01_API AEnemigo : public AActor, public IIPrototype
@@ -40,6 +40,7 @@ public:
 	void Patrullar(float DeltaTime);
 	void Atacar(float DeltaTime);
 	//Permite que el Facade asigne estrategia
+	//se usa para manejar interfaces de forma segura y flexible
 	void EstablecerEstrategia(TScriptInterface<IIMovimientoEstrategia> NuevaEstrategia);
 
 	// Para que Strategy pueda acceder a info necesaria
@@ -48,7 +49,7 @@ public:
 	bool& GetAvanzando() { return bAvanzandoHaciaLimite; }
 	EDireccionMovimiento GetDireccion() const { return Direccion; }
 	void SetDireccion(EDireccionMovimiento NuevaDir) { Direccion = NuevaDir; } 
-
+	
 
 	// Marcar si es un clon o el base
 	void SetEsBase(bool bEsBase_) { bEsBase = bEsBase_; }
@@ -56,12 +57,13 @@ public:
 	bool bEsBase = false; // <- Clave para evitar que el base se mueva
 
 
-private:
+public:
 	// Variables internas
 	FVector PosicionInicial;
 	float DistanciaMaxima;
 	bool bAvanzandoHaciaLimite;
 	EDireccionMovimiento Direccion;
+
 
 	// Referencia a la estrategia inyectada
 	UPROPERTY()

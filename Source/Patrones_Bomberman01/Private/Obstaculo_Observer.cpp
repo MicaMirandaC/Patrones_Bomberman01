@@ -33,11 +33,6 @@ void AObstaculo_Observer::BeginPlay()
 	PosicionInicial = GetActorLocation();
 	PosicionObjetivo = PosicionInicial;
 
-	// Suscribirse a la moneda si está asignada
-	if (MonedaTrampa)
-	{
-		MonedaTrampa->Subscribir(this);
-	}
 }
 
 // Called every frame
@@ -45,7 +40,6 @@ void AObstaculo_Observer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Super::Tick(DeltaTime);
 
 	if (!bMoviendoAObjetivo)
 		return;

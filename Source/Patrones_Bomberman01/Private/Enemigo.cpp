@@ -43,7 +43,7 @@ void AEnemigo::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (bEsBase) return; // <- Clave: evita que el base se mueva
+	if (bEsBase) return; // Clave: evita que el base se mueva
 
 	if (EstrategiaMovimiento)
 	{
